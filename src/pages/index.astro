@@ -1,7 +1,19 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import Footer from "../layouts/Footer.astro";
-import Cardx from "../components/Cardx.astro";
+// @ts-nocheck
+import { formatIcons, getAvailableSizes } from "../app/icons/business"
+import fetchIcons from "../app/icons/api"
+
+import Layout from "../layouts/Layout.astro"
+import Footer from "../layouts/Footer.astro"
+import Cardx from "../components/Cardx.astro"
+
+export let serverComponent = true
+
+let icons = await fetchIcons()
+icons = formatIcons(icons)
+
+const sizes = getAvailableSizes(icons)
+const defaultSize = sizes[0]
 ---
 
 <Layout title="RedRadix Icon Library">
@@ -24,21 +36,43 @@ import Cardx from "../components/Cardx.astro";
         class="wrapper grid"
         style="gap: var(--matched-radius-inner-size); --custom-gutter: 0"
       >
-        <Cardx />
-        <Cardx />
-        <Cardx />
-        <Cardx />
-        <Cardx />
-        <Cardx />
-        <Cardx />
-        <Cardx />
-        <Cardx />
-        <Cardx />
-        <Cardx />
-        <Cardx />
-        <Cardx />
+        {
+          icons.error ? (
+            <p>Ocurrió un error. Inténtalo de nuevo</p>
+          ) : (
+            <ul>
+              {Object.entries(icons).map(([iconName, iconData]) =>
+                iconData ? (
+                  <Cardx
+                    name={iconName}
+                    svgData={iconData[defaultSize].svgData}
+                  />
+                ) : null
+              )}
+            </ul>
+          )
+        }
       </div>
     </section>
+
+    <div>
+      <button type="button" id="export-all-svg">Exportar todos los SVG</button>
+    </div>
+
+    <div>
+      {
+        sizes.map((size, index) => (
+          <button
+            class={size === defaultSize ? "active" : ""}
+            type="button"
+            data-size={size}
+            id={`size-button-${index}`}
+          >
+            {size}
+          </button>
+        ))
+      }
+    </div>
   </main>
 
   <Footer />
@@ -53,3 +87,63 @@ import Cardx from "../components/Cardx.astro";
     border: 1px solid var(--color-wine-alpha);
   }
 </style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"
+></script>
+
+<script client:load define:vars={{ sizes, icons, defaultSize }}>
+  function handleSizeButtonClick(size) {
+    const elements = document.querySelectorAll(`[data-name]`)
+
+    elements.forEach((element) => {
+      const name = element.getAttribute("data-name")
+      const svgData = icons[name][size].svgData
+
+      const svgElement = element.querySelector(".icon")
+      svgElement.innerHTML = svgData
+
+      const sizeIndex = sizes.indexOf(size)
+      const sizeClass = `size-${sizeIndex}`
+      element.classList.remove(
+        ...sizes.map((size) => `size-${sizes.indexOf(size)}`)
+      )
+      element.classList.add(sizeClass)
+    })
+
+    const buttons = document.querySelectorAll(`[data-size]`)
+    buttons.forEach((button) => {
+      button.classList.remove("active")
+    })
+
+    const selectedButton = document.querySelector(`[data-size="${size}"]`)
+    selectedButton.classList.add("active")
+  }
+
+  sizes.forEach((size, index) => {
+    const button = document.getElementById(`size-button-${index}`)
+    button.addEventListener("click", () => handleSizeButtonClick(size))
+  })
+
+  function exportAllSvg() {
+    const zip = new window.JSZip()
+    const folder = zip.folder("icons")
+
+    Object.entries(icons).forEach(([iconName, iconData]) => {
+      const svgData = iconData[defaultSize].svgData
+      folder.file(`${iconName}.svg`, svgData)
+    })
+
+    zip.generateAsync({ type: "blob" }).then((content) => {
+      const link = document.createElement("a")
+      link.href = URL.createObjectURL(content)
+      link.download = "icons.zip"
+      link.style.display = "none"
+      document.body.appendChild(link)
+      link.click()
+      document.body.removeChild(link)
+    })
+  }
+
+  const exportAllSvgButton = document.getElementById("export-all-svg")
+  exportAllSvgButton.addEventListener("click", exportAllSvg)
+</script>
