@@ -10,7 +10,7 @@
     "astro": "astro",
     "preview": "astro preview",
     "start": "run-p dev:*",
-    "build": "run-s clean build:*"
+    "build": "run-s build:*"
   },
   "dependencies": {
     "astro": "^2.3.0",
