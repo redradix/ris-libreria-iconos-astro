@@ -1,18 +1,79 @@
 ---
 // @ts-nocheck
-import fetchIcons from '../app/icons/api';
-import Icon from './Icon.astro';
+import { formatIcons, getAvailableSizes } from "../app/icons/business"
+import fetchIcons from "../app/icons/api"
+import Icon from "./Icon.astro"
 
-export let serverComponent = true;
+export let serverComponent = true
 
-const icons = await fetchIcons();
+let icons = await fetchIcons()
+icons = formatIcons(icons)
+
+const sizes = getAvailableSizes(icons)
+const defaultSize = sizes[0]
 ---
 
 <div>
-    {icons.error ? <p>error</p> : <ul>
-        {icons.map(icon => icon ? (
-            <Icon name={icon.name} svgData={icon.svgData}/>
-        ) : null)}
-      </ul>
-    }
+  {
+    sizes.map((size, index) => (
+      <button
+        class={size === defaultSize ? "active" : ""}
+        type="button"
+        data-size={size}
+        id={`size-button-${index}`}
+      >
+        {size}
+      </button>
+    ))
+  }
 </div>
+
+<div>
+  {
+    icons.error ? (
+      <p>Ocurrió un error. Inténtalo de nuevo</p>
+    ) : (
+      <ul>
+        {Object.entries(icons).map(([iconName, iconData]) =>
+          iconData ? (
+            <Icon name={iconName} svgData={iconData[defaultSize].svgData} />
+          ) : null
+        )}
+      </ul>
+    )
+  }
+</div>
+
+<script client:load define:vars={{ sizes, icons }}>
+  function handleSizeButtonClick(size) {
+    const elements = document.querySelectorAll(`[data-name]`)
+
+    elements.forEach((element) => {
+      const name = element.getAttribute("data-name")
+      const svgData = icons[name][size].svgData
+
+      const svgElement = element.querySelector(".svg")
+      svgElement.innerHTML = svgData
+
+      const sizeIndex = sizes.indexOf(size)
+      const sizeClass = `size-${sizeIndex}`
+      element.classList.remove(
+        ...sizes.map((size) => `size-${sizes.indexOf(size)}`)
+      )
+      element.classList.add(sizeClass)
+    })
+
+    const buttons = document.querySelectorAll(`[data-size]`)
+    buttons.forEach((button) => {
+      button.classList.remove("active")
+    })
+
+    const selectedButton = document.querySelector(`[data-size="${size}"]`)
+    selectedButton.classList.add("active")
+  }
+
+  sizes.forEach((size, index) => {
+    const button = document.getElementById(`size-button-${index}`)
+    button.addEventListener("click", () => handleSizeButtonClick(size))
+  })
+</script>

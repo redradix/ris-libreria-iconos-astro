@@ -1,12 +1,78 @@
 ---
+// @ts-nocheck
 interface Props {
-  nname: string;
-  svgData: string;
+  name: string
+  svgData: string
 }
 
-const { name, svgData } = Astro.props;
+const { name, svgData } = Astro.props
 ---
-<li>
-    <p>{name}</p>
-    <div set:html={svgData} />
+
+<li data-name={name} data-svg={svgData}>
+  <p>{name}</p>
+  <div class="svg" set:html={svgData} />
+  <button data-type="export-png">Exportar png</button>
+  <button data-type="export-svg">Exportar svg</button>
+  <button data-type="copy-svg">Copiar svg</button>
 </li>
+
+<script is:inline define:vars={{ name, svgData }}>
+  const exportButton = document.querySelector(
+    `[data-name="${name}"] button[data-type="export-png"]`
+  )
+
+  exportButton.addEventListener("click", () => {
+    const img = new Image()
+    const canvas = document.createElement("canvas")
+    const ctx = canvas.getContext("2d")
+    const svgBlob = new Blob([svgData], { type: "image/svg+xml;charset=utf-8" })
+    const url = URL.createObjectURL(svgBlob)
+
+    img.onload = () => {
+      canvas.width = img.width
+      canvas.height = img.height
+      ctx.drawImage(img, 0, 0)
+
+      canvas.toBlob((blob) => {
+        const link = document.createElement("a")
+        link.href = URL.createObjectURL(blob)
+        link.download = `${name}.png`
+        link.style.display = "none"
+        document.body.appendChild(link)
+        link.click()
+        document.body.removeChild(link)
+      })
+
+      URL.revokeObjectURL(url)
+    }
+
+    img.src = url
+  })
+
+  const exportSvgButton = document.querySelector(
+    `[data-name="${name}"] button[data-type="export-svg"]`
+  )
+
+  exportSvgButton.addEventListener("click", () => {
+    const encodedData = encodeURIComponent(svgData)
+    const link = document.createElement("a")
+
+    link.setAttribute("href", "data:image/svg+xml;charset=utf-8," + encodedData)
+    link.setAttribute("download", `${name}.svg`)
+    link.style.display = "none"
+
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+  })
+
+  const copyButton = document.querySelector(
+    `[data-name="${name}"] button[data-type="copy-svg"]`
+  )
+
+  copyButton.addEventListener("click", (e) => {
+    const svgData = e.target.parentNode.dataset.svg
+
+    navigator.clipboard.writeText(svgData)
+  })
+</script>
