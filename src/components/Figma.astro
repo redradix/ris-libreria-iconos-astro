@@ -1,1 +1,18 @@
-<!-- fetching data from the figma api -->
+---
+// @ts-nocheck
+import fetchIcons from '../app/icons/api';
+import Icon from './Icon.astro';
+
+export let serverComponent = true;
+
+const icons = await fetchIcons();
+---
+
+<div>
+    {icons.error ? <p>error</p> : <ul>
+        {icons.map(icon => (
+            <Icon name={icon.name} svgData={icon.svgData}/>
+        ))}
+      </ul>
+    }
+</div>

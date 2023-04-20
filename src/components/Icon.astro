@@ -1,0 +1,12 @@
+---
+interface Props {
+  nname: string;
+  svgData: string;
+}
+
+const { name, svgData } = Astro.props;
+---
+<li>
+    <p>{name}</p>
+    <div set:html={svgData} />
+</li>
