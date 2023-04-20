@@ -10,9 +10,9 @@ const icons = await fetchIcons();
 
 <div>
     {icons.error ? <p>error</p> : <ul>
-        {icons.map(icon => (
+        {icons.map(icon => icon ? (
             <Icon name={icon.name} svgData={icon.svgData}/>
-        ))}
+        ) : null)}
       </ul>
     }
 </div>
