@@ -14,6 +14,10 @@ const defaultSize = sizes[0]
 ---
 
 <div>
+  <button type="button" id="export-all-svg">Exportar todos los SVG</button>
+</div>
+
+<div>
   {
     sizes.map((size, index) => (
       <button
@@ -44,7 +48,10 @@ const defaultSize = sizes[0]
   }
 </div>
 
-<script client:load define:vars={{ sizes, icons }}>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"
+></script>
+
+<script client:load define:vars={{ sizes, icons, defaultSize }}>
   function handleSizeButtonClick(size) {
     const elements = document.querySelectorAll(`[data-name]`)
 
@@ -76,4 +83,27 @@ const defaultSize = sizes[0]
     const button = document.getElementById(`size-button-${index}`)
     button.addEventListener("click", () => handleSizeButtonClick(size))
   })
+
+  function exportAllSvg() {
+    const zip = new window.JSZip()
+    const folder = zip.folder("icons")
+
+    Object.entries(icons).forEach(([iconName, iconData]) => {
+      const svgData = iconData[defaultSize].svgData
+      folder.file(`${iconName}.svg`, svgData)
+    })
+
+    zip.generateAsync({ type: "blob" }).then((content) => {
+      const link = document.createElement("a")
+      link.href = URL.createObjectURL(content)
+      link.download = "icons.zip"
+      link.style.display = "none"
+      document.body.appendChild(link)
+      link.click()
+      document.body.removeChild(link)
+    })
+  }
+
+  const exportAllSvgButton = document.getElementById("export-all-svg")
+  exportAllSvgButton.addEventListener("click", exportAllSvg)
 </script>
