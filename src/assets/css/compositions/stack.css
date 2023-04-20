@@ -1,0 +1,14 @@
+.stack {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: end;
+}
+
+.stack > * + * {
+  margin-block-start: var(--space-xs, 1.5rem);
+}
+
+.stack > :nth-child(2) {
+  margin-block-end: auto;
+}

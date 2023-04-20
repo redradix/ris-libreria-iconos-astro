@@ -5,24 +5,10 @@
  * Info: https://piccalil.li/quick-tip/use-css-clamp-to-create-a-more-flexible-wrapper-utility/
  */
 .wrapper {
-  max-width: var(--wrapper-max-width, 85rem);
+  max-width: var(--wrapper-max-width, 90rem);
   margin-left: auto;
   margin-right: auto;
-  padding-left: var(--gutter);
-  padding-right: var(--gutter);
+  padding-inline-start: var(--custom-gutter, var(--gutter));
+  padding-inline-end: var(--custom-gutter, var(--gutter));
   /* position: relative; */
-}
-
-.wrapper-max {
-  max-width: var(--wrapper-max-width, 135rem);
-  margin-left: auto;
-  margin-right: auto;
-  /* position: relative; */
-}
-
-@media screen and (min-width: 70em) {
-  /* .wrapper-max {
-    transform: rotate(-1deg) translateX(1.2rem);
-    padding-block-start: 2em;
-  } */
 }

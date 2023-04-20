@@ -1,15 +1,17 @@
 .card {
-  --_color: var(--color, var(--color-light));
-  --_bg-color: var(--bg-color, var(--color-dark));
-  --_selection-color: var(--selection-color, var(--color-dark));
-  --_selection-bg-color: var(--selection-bg-color, var(--color-secondary));
-  --_hover-color: var(--hover-color, var(--color-primary));
+  --_color: var(--color, var(--color-wine));
+  --_bg-color: var(--bg-color, var(--color-cream));
+  --_selection-color: var(--selection-color, var(--color-wine));
+  --_selection-bg-color: var(--selection-bg-color, var(--color-cream));
+  --_hover-color: var(--hover-color, var(--color-white));
   background-color: var(--_bg-color);
-  border: 4px solid var(--_bg-color);
+  /* border: 1px solid var(--_bg-color); */
+  border: 1px solid var(--color-wine-alpha);
   color: var(--_color);
   padding: var(--space-m-l);
   border-radius: var(--border-radius);
   max-width: unset;
+  aspect-ratio: 1;
 }
 
 .card ::selection {
@@ -19,7 +21,8 @@
 
 .card:hover,
 .card:focus-within {
-  border: 4px solid var(--_hover-color);
+  border: 1px solid var(--_hover-color);
+  --bg-color: var(--color-white);
 }
 
 .card h2 {
@@ -45,7 +48,7 @@
 }
 .card a:after {
   bottom: 0;
-  content: '';
+  content: "";
   left: 0;
   position: absolute;
   right: 0;

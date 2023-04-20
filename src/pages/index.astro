@@ -1,53 +1,55 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Figma from "../components/Figma.astro";
+import Footer from "../layouts/Footer.astro";
+import Cardx from "../components/Cardx.astro";
 ---
 
-<Layout title="Welcome to Astro.">
-  <Figma />
+<Layout title="RedRadix Icon Library">
+  <a href="#main" class="skip-link">skip</a>
+
+  <main>
+    <div class="wrapper">
+      <header class="sidebar region innerspace">
+        <h1 style="--sidebar-target-width: 33rem;">RedRadix</h1>
+        <p>
+          En nuestra galería de iconografía e ilustraciones responsive,
+          encontrarás imágenes optimizadas para adaptarse a cualquier
+          dispositivo y tamaño de pantalla.
+        </p>
+      </header>
+    </div>
+
+    <section class="iconcontainer matched-radius">
+      <div
+        class="wrapper grid"
+        style="gap: var(--matched-radius-inner-size); --custom-gutter: 0"
+      >
+        <Cardx />
+        <Cardx />
+        <Cardx />
+        <Cardx />
+        <Cardx />
+        <Cardx />
+        <Cardx />
+        <Cardx />
+        <Cardx />
+        <Cardx />
+        <Cardx />
+        <Cardx />
+        <Cardx />
+      </div>
+    </section>
+  </main>
+
+  <Footer />
 </Layout>
 
 <style>
-  main {
-    margin: auto;
-    padding: 1.5rem;
-    max-width: 60ch;
+  header p {
+    font-size: var(--size-step-2);
   }
-  h1 {
-    font-size: 3rem;
-    font-weight: 800;
-    margin: 0;
-  }
-  .text-gradient {
-    background-image: var(--accent-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-size: 400%;
-    background-position: 0%;
-  }
-  .instructions {
-    line-height: 1.6;
-    margin: 1rem 0;
-    border: 1px solid rgba(var(--accent), 25%);
-    background-color: white;
-    padding: 1rem;
-    border-radius: 0.4rem;
-  }
-  .instructions code {
-    font-size: 0.875em;
-    font-weight: bold;
-    background: rgba(var(--accent), 12%);
-    color: rgb(var(--accent));
-    border-radius: 4px;
-    padding: 0.3em 0.45em;
-  }
-  .instructions strong {
-    color: rgb(var(--accent));
-  }
-  .link-card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
-    gap: 1rem;
-    padding: 0;
+
+  section {
+    border: 1px solid var(--color-wine-alpha);
   }
 </style>

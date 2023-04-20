@@ -1,0 +1,13 @@
+.matched-radius {
+  padding: var(--matched-radius-padding);
+  border-top-right-radius: calc(
+    var(--matched-radius-inner-size) + var(--matched-radius-padding)
+  );
+  border-top-left-radius: calc(
+    var(--matched-radius-inner-size) + var(--matched-radius-padding)
+  );
+}
+
+.matched-radius__inner {
+  border-radius: var(--matched-radius-inner-size);
+}
