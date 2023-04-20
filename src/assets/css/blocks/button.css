@@ -1,0 +1,26 @@
+/* A blank block because there is *always* a button */
+
+button,
+.button {
+  --_color: var(--color, var(--color-dark));
+  border: 0.1em solid var(--_color);
+  background: transparent;
+  color: var(--_color);
+  padding: var(--space-xs) var(--space-l-xl);
+  border-radius: var(--border-radius);
+  /* animate box shadow*/
+  transition: 0.2s;
+  cursor: pointer;
+}
+
+button:where(:hover, :focus),
+.button:where(:hover, :focus) {
+  background: var(--_color);
+  color: var(--color-light);
+  /* box-shadow: 0 0 0 2em var(--_color) inset; */
+}
+
+button.pink,
+.button.pink {
+  --color: deeppink;
+}

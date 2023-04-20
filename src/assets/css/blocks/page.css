@@ -1,0 +1,39 @@
+.page img {
+  max-inline-size: var(--max-img-width, 100%);
+  block-size: auto;
+}
+
+.page-head {
+  max-block-size: 40rem;
+  display: grid;
+  grid-template-columns: repeat(3, 2fr);
+  grid-template-rows: auto;
+}
+
+.page-head > *:not(.lines) {
+  grid-column-start: 1;
+  grid-column-end: 4;
+}
+
+.page-head .lines {
+  display: grid;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 2;
+
+  background-color: transparent;
+  opacity: 0.2;
+  background-image: linear-gradient(
+    135deg,
+    transparent 16.67%,
+    var(--color-dark) 16.67%,
+    var(--color-dark) 50%,
+    transparent 50%,
+    transparent 66.67%,
+    var(--color-dark) 66.67%,
+    var(--color-dark) 100%
+  );
+  background-size: 4.24px 4.24px;
+  clip-path: polygon(0 0, 29% 0, 76% 100%, 0% 100%);
+}

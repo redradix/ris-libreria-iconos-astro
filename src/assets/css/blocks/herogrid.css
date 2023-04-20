@@ -1,0 +1,92 @@
+.hero2 {
+  max-block-size: 70rem;
+  display: grid;
+  grid-template-columns: repeat(3, 2fr) 1fr;
+  grid-template-rows: 0.5fr 2fr 3fr;
+  gap: var(--gutter, var(--space-s-l));
+}
+
+.hero2 {
+  transform: translateY(-11%);
+}
+
+.hero2 .color {
+  background-color: var(--color-primary);
+  grid-column-start: 1;
+  grid-column-end: 5;
+  grid-row-start: 2;
+  grid-row-end: 5;
+  clip-path: polygon(1% 1%, 98% 0%, 100% 100%, 6% 100%);
+}
+
+.hero2 .lines {
+  grid-column-start: 1;
+  grid-column-end: 4;
+  grid-row-start: 2;
+  grid-row-end: 5;
+
+  background-color: transparent;
+  opacity: 0.2;
+  background-image: linear-gradient(
+    135deg,
+    transparent 16.67%,
+    var(--color-dark) 16.67%,
+    var(--color-dark) 50%,
+    transparent 50%,
+    transparent 66.67%,
+    var(--color-dark) 66.67%,
+    var(--color-dark) 100%
+  );
+  background-size: 4.24px 4.24px;
+  clip-path: polygon(0 0, 29% 0, 76% 100%, 0% 100%);
+}
+
+.hero2 img {
+  filter: brightness(110%);
+  /* https://utopia.fyi/type/calculator?c=360,713,1.2,1437,1083,1.333,7,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
+  width: clamp(44.56rem, calc(32.65rem + 52.92vw), 79.19rem);
+  height: auto;
+}
+
+.hero2 .decoration {
+  display: grid;
+  grid-column-start: 1;
+  grid-column-end: 4;
+  grid-row-start: 1;
+  grid-row-end: 5;
+}
+
+.hero2 .note {
+  grid-column-start: 2;
+  grid-column-end: 5;
+  grid-row-start: 3;
+  grid-row-end: 4;
+}
+
+.hero2 h2 {
+  --corner-size: 1em;
+  font-size: var(--size-step-5);
+  max-inline-size: 12ch;
+  line-height: 1.4;
+  color: var(--color-light-glare);
+}
+
+.hero2 h2 span {
+  background-color: var(--color-secondary);
+  padding: 0 var(--space-xs);
+  box-decoration-break: clone;
+}
+
+.hero2 svg {
+  grid-column-start: 4;
+  grid-column-end: 5;
+  grid-row-start: 2;
+  grid-row-end: 5;
+  /* writing-mode: horizontal-tb; */
+  align-self: center;
+  justify-self: end;
+  width: auto;
+  height: clamp(6.25rem, calc(-5.4rem + 58.25vw), 43.75rem);
+  transform: rotate(-1deg);
+  padding-inline-end: var(--space-xs);
+}
