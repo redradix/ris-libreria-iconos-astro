@@ -5,7 +5,7 @@
   --_selection-bg-color: var(--selection-bg-color, var(--color-cream));
   --_hover-color: var(--hover-color, var(--color-white));
   --_icon-size-step-0: 32px;
-  --_icon-size-step-1: 56px;
+  --_icon-size-step-1: 80px;
   --_icon-size-step-2: 152px;
   --_icon-size: var(--_icon-size-step-0);
 
