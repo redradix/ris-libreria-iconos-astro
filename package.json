@@ -13,6 +13,7 @@
     "build": "run-s build:*"
   },
   "dependencies": {
+    "@astrojs/prefetch": "^0.2.1",
     "astro": "^2.3.0",
     "astro-icon": "^0.8.0",
     "cssnano": "^6.0.0",
