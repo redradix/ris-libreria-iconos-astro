@@ -5,15 +5,16 @@
   --_selection-bg-color: var(--selection-bg-color, var(--color-cream));
   --_hover-color: var(--hover-color, var(--color-white));
   background-color: var(--_bg-color);
-  /* border: 1px solid var(--_bg-color); */
-  border: 1px solid var(--color-wine-alpha);
+  border: 1px solid var(--_bg-color);
+
   color: var(--_color);
   padding: var(--space-xs);
   border-radius: var(--border-radius);
   max-width: unset;
   aspect-ratio: 1;
-  display: grid;
-  place-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .card ::selection {
@@ -65,7 +66,7 @@
 .icon svg {
   flex: none;
   height: 100%;
-  width: 6.5rem;
+  width: 8rem;
 }
 
 .card p {
@@ -83,7 +84,15 @@
 }
 
 .select {
-  display: none;
+  clip: rect(1px, 1px, 1px, 1px);
+  display: block;
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  width: 1px;
+  bottom: 1rem;
+  left: 1rem;
+  z-index: 999;
 }
 
 .card:hover .select,
@@ -91,7 +100,10 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100%;
+  width: 90%; /* hacky :( */
+  clip: auto;
+  height: auto;
+  overflow: visible;
 }
 
 .select .group {
