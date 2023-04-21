@@ -6,7 +6,7 @@ export const formatIcons = (icons) => {
       name: displayName,
       tag,
       size,
-      svgData,
+      svgData: svgData.replace("<svg", `<svg aria-label="${displayName}"`)
     };
 
     return formattedIcon;
