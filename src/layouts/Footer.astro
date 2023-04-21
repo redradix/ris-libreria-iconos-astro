@@ -5,18 +5,19 @@ import { Icon } from "astro-icon";
 <footer>
   <div class="wrapper region">
     <div class="innerspace">
-      <a class="totop bounce" href="#"> <Icon name="totop" /></a>
+      <div class="translate">
+        <a class="totop bounce" href="#"> <Icon name="totop" /></a>
+      </div>
 
       <div class="sidebar">
         <h2>Digital wisdom for the now</h2>
 
         <div class="stack">
-          <button>Figma library</button>
-          <button>Figma sdf</button>
+          <a class="button" href="#">Figma library</a>
+          <a class="button" href="#">Design system</a>
+          <a class="button" href="#">Redradix Website</a>
         </div>
       </div>
-
-      ...
     </div>
   </div>
 
@@ -39,11 +40,13 @@ import { Icon } from "astro-icon";
 <style>
   footer {
     background-color: var(--color-pink);
+    background-image: url(/public/asterisk.svg);
+    background-position: bottom center;
+    background-repeat: no-repeat;
   }
 
   .copyright {
     border-top: 1px solid var(--color-wine-alpha);
-    padding-block: var(--space-xs);
   }
 
   .sidebar {
@@ -54,6 +57,10 @@ import { Icon } from "astro-icon";
 
   .cluster {
     --space: var(--space-m-l);
+  }
+
+  .translate {
+    transform: translateY(-40%);
   }
 
   .totop svg {
@@ -70,7 +77,7 @@ import { Icon } from "astro-icon";
     border: 1px solid var(--_color);
     color: var(--_color);
     border-radius: 50%;
-    inline-size: 7ch;
+    inline-size: 6ch;
     cursor: pointer;
     display: inline-grid;
     place-items: center;

@@ -11,6 +11,7 @@ button,
   cursor: pointer;
   width: fit-content;
   font-weight: 500;
+  text-decoration: none;
 }
 
 button:where(:hover, :focus),

@@ -6,7 +6,7 @@
 }
 
 .stack > * + * {
-  margin-block-start: var(--space-xs, 1.5rem);
+  margin-block-start: var(--space-s, 1.5rem);
 }
 
 .stack > :nth-child(2) {
