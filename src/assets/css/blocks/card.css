@@ -4,6 +4,11 @@
   --_selection-color: var(--selection-color, var(--color-wine));
   --_selection-bg-color: var(--selection-bg-color, var(--color-cream));
   --_hover-color: var(--hover-color, var(--color-white));
+  --_icon-size-step-0: 32px;
+  --_icon-size-step-1: 56px;
+  --_icon-size-step-2: 152px;
+  --_icon-size: var(--_icon-size-step-0);
+
   background-color: var(--_bg-color);
   border: 1px solid var(--_bg-color);
 
@@ -41,6 +46,19 @@
   text-decoration: none;
 }
 
+/* sizes */
+.card.size-0 svg {
+  --_icon-size: var(--_icon-size-step-0);
+}
+
+.card.size-1 svg {
+  --_icon-size: var(--_icon-size-step-1);
+}
+
+.card.size-2 svg {
+  --_icon-size: var(--_icon-size-step-2);
+}
+
 /* 'clickable' */
 
 .card:focus-within a:focus {
@@ -66,7 +84,7 @@
 .icon svg {
   flex: none;
   height: 100%;
-  width: 8rem;
+  width: var(--_icon-size);
 }
 
 .card p {
