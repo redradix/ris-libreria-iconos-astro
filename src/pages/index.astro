@@ -1,23 +1,23 @@
 ---
 // @ts-nocheck
-import { formatIcons, getAvailableSizes } from "../app/icons/business"
-import fetchIcons from "../app/icons/api"
-import Layout from "../layouts/Layout.astro"
-import Footer from "../layouts/Footer.astro"
-import Card from "../components/Card.astro"
-import { Icon } from "astro-icon"
-export let serverComponent = true
-let icons = await fetchIcons()
-icons = formatIcons(icons)
-const sizes = getAvailableSizes(icons)
-const defaultSize = sizes[0]
+import { formatIcons, getAvailableSizes } from "../app/icons/business";
+import fetchIcons from "../app/icons/api";
+import Layout from "../layouts/Layout.astro";
+import Footer from "../layouts/Footer.astro";
+import Card from "../components/Card.astro";
+import { Icon } from "astro-icon";
+export let serverComponent = true;
+let icons = await fetchIcons();
+icons = formatIcons(icons);
+const sizes = getAvailableSizes(icons);
+const defaultSize = sizes[0];
 ---
 
 <Layout title="RedRadix Icon Library">
   <main>
     <div class="wrapper">
       <header class="sidebar region innerspace">
-        <h1 style="--sidebar-target-width: 33rem;">RedRadix</h1>
+        <h1>RedRadix</h1>
         <p>
           En nuestra galería de iconografía e ilustraciones responsive,
           encontrarás imágenes optimizadas para adaptarse a cualquier
@@ -31,10 +31,7 @@ const defaultSize = sizes[0]
         icons.error ? (
           <p>Ocurrió un error. Inténtalo de nuevo</p>
         ) : (
-          <div
-            class="wrapper grid"
-            style="gap: var(--matched-radius-inner-size); --custom-gutter: 0"
-          >
+          <div class="wrapper grid">
             {Object.entries(icons).map(([iconName, iconData]) =>
               iconData ? (
                 <Card name={iconName} svgData={iconData[defaultSize].svgData} />
@@ -81,6 +78,15 @@ const defaultSize = sizes[0]
 <Footer />
 
 <style>
+  .grid {
+    gap: var(--matched-radius-inner-size);
+    --custom-gutter: 0;
+  }
+
+  h1 {
+    --sidebar-target-width: 33rem;
+  }
+
   header p {
     font-size: var(--size-step-2);
   }
@@ -106,9 +112,10 @@ const defaultSize = sizes[0]
     padding: 0.5em 1em;
   }
 
-  section.control button.active {
+  section.control button:where(:hover, :focus, .active) {
     --color: var(--color-white);
     --bgcolor: var(--color-wine);
+    outline-color: var(--color-wine);
   }
 
   button.plain {
@@ -127,59 +134,59 @@ const defaultSize = sizes[0]
 
 <script client:load define:vars={{ sizes, icons, defaultSize }}>
   function handleSizeButtonClick(size, event) {
-    const elements = document.querySelectorAll(`[data-name]`)
+    const elements = document.querySelectorAll(`[data-name]`);
 
     elements.forEach((element) => {
-      const name = element.getAttribute("data-name")
-      const svgData = icons[name][size].svgData
+      const name = element.getAttribute("data-name");
+      const svgData = icons[name][size].svgData;
 
-      const svgElement = element.querySelector(".icon")
-      svgElement.innerHTML = svgData
+      const svgElement = element.querySelector(".icon");
+      svgElement.innerHTML = svgData;
 
-      const sizeIndex = sizes.indexOf(size)
-      const sizeClass = `size-${sizeIndex}`
+      const sizeIndex = sizes.indexOf(size);
+      const sizeClass = `size-${sizeIndex}`;
       element.classList.remove(
         ...sizes.map((size) => `size-${sizes.indexOf(size)}`)
-      )
-      element.classList.add(sizeClass)
-    })
+      );
+      element.classList.add(sizeClass);
+    });
 
-    const buttons = document.querySelectorAll(`[data-size]`)
+    const buttons = document.querySelectorAll(`[data-size]`);
     buttons.forEach((button) => {
-      button.classList.remove("active")
-    })
+      button.classList.remove("active");
+    });
 
-    const selectedButton = document.querySelector(`[data-size="${size}"]`)
-    selectedButton.classList.add("active")
+    const selectedButton = document.querySelector(`[data-size="${size}"]`);
+    selectedButton.classList.add("active");
   }
 
   sizes.forEach((size, index) => {
-    const button = document.getElementById(`size-button-${index}`)
+    const button = document.getElementById(`size-button-${index}`);
     button.addEventListener("click", (event) =>
       handleSizeButtonClick(size, event)
-    )
-  })
+    );
+  });
 
   function exportAllSvg() {
-    const zip = new window.JSZip()
-    const folder = zip.folder("icons")
+    const zip = new window.JSZip();
+    const folder = zip.folder("icons");
 
     Object.entries(icons).forEach(([iconName, iconData]) => {
-      const svgData = iconData[defaultSize].svgData
-      folder.file(`${iconName}.svg`, svgData)
-    })
+      const svgData = iconData[defaultSize].svgData;
+      folder.file(`${iconName}.svg`, svgData);
+    });
 
     zip.generateAsync({ type: "blob" }).then((content) => {
-      const link = document.createElement("a")
-      link.href = URL.createObjectURL(content)
-      link.download = "icons.zip"
-      link.style.display = "none"
-      document.body.appendChild(link)
-      link.click()
-      document.body.removeChild(link)
-    })
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(content);
+      link.download = "icons.zip";
+      link.style.display = "none";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    });
   }
 
-  const exportAllSvgButton = document.getElementById("export-all-svg")
-  exportAllSvgButton.addEventListener("click", exportAllSvg)
+  const exportAllSvgButton = document.getElementById("export-all-svg");
+  exportAllSvgButton.addEventListener("click", exportAllSvg);
 </script>

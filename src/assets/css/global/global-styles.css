@@ -50,22 +50,6 @@ h3 {
   text-wrap: balance;
 }
 
-blockquote {
-  border-inline-start: 0.8rem solid var(--color-wine);
-  padding: var(--space-m-l);
-  font-size: var(--size-step-2);
-}
-
-blockquote > * + * {
-  margin-top: var(--space-m-l);
-}
-
-blockquote :last-child {
-  font-family: var(--font-base);
-  font-style: normal;
-  font-size: var(--size-step-1);
-}
-
 svg {
   height: 2ex;
   width: auto;
@@ -109,8 +93,4 @@ main:focus {
 ::selection {
   background: var(--color-wine);
   color: var(--color-cream);
-}
-
-.preload-transitions * {
-  transition: none !important;
 }

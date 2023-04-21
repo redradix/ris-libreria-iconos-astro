@@ -2,7 +2,7 @@ button,
 .button {
   --_color: var(--color, var(--color-wine));
   --_bgcolor: var(--bgcolor, var(--color-wine-alpha));
-  border: 0.1em solid var(--_color);
+  border: 0.1em solid var(--brdrcolor, --_color);
   background: var(--_bgcolor);
   color: var(--_color);
   padding: var(--space-xs) var(--space-l-xl);

@@ -97,8 +97,11 @@
 }
 
 .group {
-  display: grid;
-  place-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 70%;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .select {
@@ -125,7 +128,7 @@
 }
 
 .select .group {
-  display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: space-between;
   gap: 0.3em;
@@ -145,4 +148,8 @@
 .select button:where(:hover, :focus) {
   --color: var(--color-wine);
   --bgcolor: var(--color-cream);
+}
+
+.select button.card {
+  border: none;
 }

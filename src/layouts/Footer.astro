@@ -6,7 +6,10 @@ import { Icon } from "astro-icon"
   <div class="wrapper region">
     <div class="innerspace">
       <div class="translate">
-        <a class="totop bounce" href="#"> <Icon name="totop" /></a>
+        <a class="totop bounce" href="#">
+          <span class="visually-hidden">Back to top</span>
+          <Icon name="totop" /></a
+        >
       </div>
 
       <div class="sidebar">
@@ -42,11 +45,11 @@ import { Icon } from "astro-icon"
         <span class="with-icon">
           <Icon name="logo-s" /> RedRadix S.L. Copyright 2023</span
         >
-        <ul class="cluster">
-          <a href="">Privacy</a>
-          <a href="">Legal</a>
-          <a href="">Cookies</a>
-        </ul>
+        <nav class="cluster" aria-label="Footer">
+          <a href="#">Privacy</a>
+          <a href="#">Legal</a>
+          <a href="#">Cookies</a>
+        </nav>
       </div>
     </div>
   </div>
@@ -62,6 +65,7 @@ import { Icon } from "astro-icon"
 
   .copyright {
     border-top: 1px solid var(--color-wine-alpha);
+    padding-block: var(--space-xs);
   }
 
   .sidebar {

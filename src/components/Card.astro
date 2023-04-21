@@ -1,12 +1,12 @@
 ---
 // @ts-nocheck
 interface Props {
-  name: string
-  svgData: string
+  name: string;
+  svgData: string;
 }
 
-const { name, svgData } = Astro.props
-import { Icon } from "astro-icon"
+const { name, svgData } = Astro.props;
+import { Icon } from "astro-icon";
 ---
 
 <article
@@ -14,81 +14,101 @@ import { Icon } from "astro-icon"
   data-name={name}
   data-svg={svgData}
 >
-  <div class="group"><div class="icon" set:html={svgData} /> <p>{name}</p></div>
+  <div class="group">
+    <!-- TODO hack to place item centered in its 70% height flexbox with space-between. Should be improved -->
+    <div></div><div class="icon" set:html={svgData} />
+    <p>{name}</p>
+  </div>
 
   <div class="select">
     <div class="group">
       <span>SVG</span>
-      <button data-type="copy-svg"> <Icon name="copy" /></button>
-      <button data-type="export-svg"><Icon name="download" /></button>
+      <button data-type="copy-svg">
+        <span class="visually-hidden">Copy SVG</span>
+        <Icon name="copy" /></button
+      >
+      <button data-type="export-svg">
+        <span class="visually-hidden">Download SVG</span><Icon
+          name="download"
+        /></button
+      >
     </div>
 
     <div class="group">
       <span>PNG</span>
-      <button data-type="export-png"><Icon name="download" /></button>
+      <button data-type="export-png">
+        <span class="visually-hidden">Download PNG</span><Icon
+          name="download"
+        /></button
+      >
     </div>
   </div>
 </article>
 
+<style></style>
+
 <script is:inline define:vars={{ name, svgData }}>
   const exportButton = document.querySelector(
     `[data-name="${name}"] button[data-type="export-png"]`
-  )
+  );
 
   exportButton.addEventListener("click", () => {
-    const img = new Image()
-    const canvas = document.createElement("canvas")
-    const ctx = canvas.getContext("2d")
+    const img = new Image();
+    const canvas = document.createElement("canvas");
+    const ctx = canvas.getContext("2d");
     const svgBlob = new Blob([svgData], {
       type: "image/svg+xml;charset=utf-8",
-    })
-    const url = URL.createObjectURL(svgBlob)
+    });
+    const url = URL.createObjectURL(svgBlob);
 
     img.onload = () => {
-      canvas.width = img.width
-      canvas.height = img.height
-      ctx.drawImage(img, 0, 0)
+      canvas.width = img.width;
+      canvas.height = img.height;
+      ctx.drawImage(img, 0, 0);
 
       canvas.toBlob((blob) => {
-        const link = document.createElement("a")
-        link.href = URL.createObjectURL(blob)
-        link.download = `${name}.png`
-        link.style.display = "none"
-        document.body.appendChild(link)
-        link.click()
-        document.body.removeChild(link)
-      })
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = `${name}.png`;
+        link.style.display = "none";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      });
 
-      URL.revokeObjectURL(url)
-    }
+      URL.revokeObjectURL(url);
+    };
 
-    img.src = url
-  })
+    img.src = url;
+  });
 
   const exportSvgButton = document.querySelector(
     `[data-name="${name}"] button[data-type="export-svg"]`
-  )
+  );
 
   exportSvgButton.addEventListener("click", () => {
-    const encodedData = encodeURIComponent(svgData)
-    const link = document.createElement("a")
+    const encodedData = encodeURIComponent(svgData);
+    const link = document.createElement("a");
 
-    link.setAttribute("href", "data:image/svg+xml;charset=utf-8," + encodedData)
-    link.setAttribute("download", `${name}.svg`)
-    link.style.display = "none"
+    link.setAttribute(
+      "href",
+      "data:image/svg+xml;charset=utf-8," + encodedData
+    );
+    link.setAttribute("download", `${name}.svg`);
+    link.style.display = "none";
 
-    document.body.appendChild(link)
-    link.click()
-    document.body.removeChild(link)
-  })
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  });
 
   const copyButton = document.querySelector(
     `[data-name="${name}"] button[data-type="copy-svg"]`
-  )
+  );
 
   copyButton.addEventListener("click", (e) => {
-    const svgData = e.target.parentNode.dataset.svg
+    const svgData = e.target.parentNode.dataset.svg;
 
-    navigator.clipboard.writeText(svgData)
-  })
+    navigator.clipboard.writeText(svgData);
+  });
 </script>

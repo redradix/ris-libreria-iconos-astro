@@ -1,4 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="15" height="16" fill="none">
+<svg
+  aria-hidden="true"
+  focusable="false"
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 15 16"
+  fill="none"
+>
   <path
     fill="var(--color)"
     d="M14.031.875h-9.5a.594.594 0 0 0-.593.594v2.968H.967a.594.594 0 0 0-.593.594v9.5a.594.594 0 0 0 .594.594h9.5a.594.594 0 0 0 .594-.594v-2.969h2.968a.594.594 0 0 0 .594-.593v-9.5a.594.594 0 0 0-.594-.594ZM9.875 13.938H1.562V5.624h8.313v8.313Zm3.563-3.563h-2.376V5.031a.594.594 0 0 0-.593-.593H5.125V2.063h8.313v8.312Z"
