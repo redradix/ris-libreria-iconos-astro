@@ -44,24 +44,26 @@ const defaultSize = sizes[0];
       }
     </section>
 
-    <div>
-      <button type="button" id="export-all-svg">Exportar todos los SVG</button>
-    </div>
-
-    <div>
-      {
-        sizes.map((size, index) => (
-          <button
-            class={size === defaultSize ? "active" : ""}
-            type="button"
-            data-size={size}
-            id={`size-button-${index}`}
-          >
-            {size}
-          </button>
-        ))
-      }
-    </div>
+    <section class="control">
+      <div>
+        <div>
+          {
+            sizes.map((size, index) => (
+              <button
+                class={size === defaultSize ? "active" : ""}
+                type="button"
+                data-size={size}
+                id={`size-button-${index}`}
+              >
+                {size}
+              </button>
+            ))
+          }
+        </div>
+        <button type="button" id="export-all-svg">Exportar todos los SVG</button
+        >
+      </div>
+    </section>
   </main>
 
   <Footer />
@@ -72,7 +74,7 @@ const defaultSize = sizes[0];
     font-size: var(--size-step-2);
   }
 
-  section {
+  section.iconcontainer {
     border: 1px solid var(--color-wine-alpha);
   }
 </style>

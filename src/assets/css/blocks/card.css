@@ -83,6 +83,11 @@
 }
 
 .select {
+  display: none;
+}
+
+.card:hover .select,
+.card:focus-within .select {
   display: flex;
   align-items: center;
   justify-content: space-between;
