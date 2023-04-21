@@ -4,7 +4,7 @@ import { formatIcons, getAvailableSizes } from "../app/icons/business";
 import fetchIcons from "../app/icons/api";
 import Layout from "../layouts/Layout.astro";
 import Footer from "../layouts/Footer.astro";
-import Cardx from "../components/Cardx.astro";
+import Card from "../components/Card.astro";
 export let serverComponent = true;
 let icons = await fetchIcons();
 icons = formatIcons(icons);
@@ -26,27 +26,22 @@ const defaultSize = sizes[0];
     </div>
 
     <section class="iconcontainer matched-radius">
-      <div
-        class="wrapper grid"
-        style="gap: var(--matched-radius-inner-size); --custom-gutter: 0"
-      >
-        {
-          icons.error ? (
-            <p>Ocurrió un error. Inténtalo de nuevo</p>
-          ) : (
-            <ul>
-              {Object.entries(icons).map(([iconName, iconData]) =>
-                iconData ? (
-                  <Cardx
-                    name={iconName}
-                    svgData={iconData[defaultSize].svgData}
-                  />
-                ) : null
-              )}
-            </ul>
-          )
-        }
-      </div>
+      {
+        icons.error ? (
+          <p>Ocurrió un error. Inténtalo de nuevo</p>
+        ) : (
+          <div
+            class="wrapper grid"
+            style="gap: var(--matched-radius-inner-size); --custom-gutter: 0"
+          >
+            {Object.entries(icons).map(([iconName, iconData]) =>
+              iconData ? (
+                <Card name={iconName} svgData={iconData[defaultSize].svgData} />
+              ) : null
+            )}
+          </div>
+        )
+      }
     </section>
 
     <div>

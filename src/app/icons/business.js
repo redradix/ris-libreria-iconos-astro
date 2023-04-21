@@ -1,42 +1,42 @@
 export const formatIcons = (icons) => {
   const formattedIcons = icons.map(({ name, svgData }) => {
-    const [displayName, tag, size] = name.split(" | ")
+    const [displayName, tag, size] = name.split(" | ");
 
     const formattedIcon = {
       name: displayName,
       tag,
       size,
       svgData,
-    }
+    };
 
-    return formattedIcon
-  })
+    return formattedIcon;
+  });
 
   const groupedByName = formattedIcons.reduce((acc, icon) => {
-    const { name, size } = icon
+    const { name, size } = icon;
 
     if (!acc[name]) {
-      acc[name] = {}
+      acc[name] = {};
     }
 
-    acc[name][size] = icon
+    acc[name][size] = icon;
 
-    return acc
-  }, {})
+    return acc;
+  }, {});
 
-  return groupedByName
-}
+  return groupedByName;
+};
 
 export const getAvailableSizes = (groupedIcons) => {
-  const sizes = new Set()
+  const sizes = new Set();
 
   for (const iconName in groupedIcons) {
-    const icon = groupedIcons[iconName]
+    const icon = groupedIcons[iconName];
 
     for (const size in icon) {
-      sizes.add(size)
+      sizes.add(size);
     }
   }
 
-  return Array.from(sizes)
-}
+  return Array.from(sizes);
+};
