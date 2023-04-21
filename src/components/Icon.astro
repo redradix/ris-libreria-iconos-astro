@@ -1,12 +1,13 @@
 ---
 interface Props {
-  nname: string;
+  name: string;
   svgData: string;
 }
 
 const { name, svgData } = Astro.props;
 ---
+
 <li>
-    <p>{name}</p>
-    <div set:html={svgData} />
+  <p>{name}</p>
+  <div set:html={svgData} />
 </li>

@@ -1,0 +1,12 @@
+.with-icon {
+  display: inline-flex;
+  align-items: center;
+}
+
+.with-icon svg {
+  margin-inline-end: 0.5rem;
+  width: 1.1em;
+  width: 1cap;
+  height: 1.1em;
+  height: 1cap;
+}

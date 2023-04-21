@@ -1,6 +1,12 @@
+---
+import { Icon } from "astro-icon";
+---
+
 <footer>
   <div class="wrapper region">
     <div class="innerspace">
+      <a class="totop bounce" href="#"> <Icon name="totop" /></a>
+
       <div class="sidebar">
         <h2>Digital wisdom for the now</h2>
 
@@ -17,7 +23,9 @@
   <div class="copyright">
     <div class="wrapper">
       <div class="innerspace cluster">
-        <a href="https://redradix.com">RedRadix 2023</a>
+        <a class="with-icon" href="https://redradix.com">
+          <Icon name="logo-s" /> RedRadix 2023</a
+        >
         <ul class="cluster">
           <a href="">Privacy</a>
           <a href="">Legal</a>
@@ -42,5 +50,36 @@
     --sidebar-vertical-alignment: flex-end;
     --sidebar-content-min-width: 25%;
     --sidebar-target-width: 40rem;
+  }
+
+  .cluster {
+    --space: var(--space-m-l);
+  }
+
+  .totop svg {
+    flex: none;
+    height: 3ex;
+    width: auto;
+  }
+
+  a.totop {
+    --_color: var(--color, var(--color-wine));
+    --_bgcolor: var(--bgcolor, var(--color-wine-alpha));
+    aspect-ratio: 1;
+    background-color: var(--_bgcolor);
+    border: 1px solid var(--_color);
+    color: var(--_color);
+    border-radius: 50%;
+    inline-size: 7ch;
+    cursor: pointer;
+    display: inline-grid;
+    place-items: center;
+    position: relative;
+    text-decoration: none;
+  }
+
+  a.totop:hover {
+    --color: var(--color-pink);
+    --bgcolor: var(--color-wine);
   }
 </style>

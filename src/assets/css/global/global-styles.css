@@ -85,6 +85,7 @@ picture {
 
 a {
   color: currentcolor;
+  text-underline-offset: 0.3em;
 }
 
 a:hover {
