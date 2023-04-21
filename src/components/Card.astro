@@ -6,20 +6,24 @@ interface Props {
 }
 
 const { name, svgData } = Astro.props;
+import { Icon } from "astro-icon";
 ---
 
-<article
-  class="matched-radius__inner card flow"
-  data-name={name}
-  data-svg={svgData}
->
-  <div class="icon" set:html={svgData} />
+<article class="matched-radius__inner card" data-name={name} data-svg={svgData}>
+  <div class="group"><div class="icon" set:html={svgData} /> <p>{name}</p></div>
 
-  {name}
+  <div class="select">
+    <div class="group">
+      <span>SVG</span>
+      <button data-type="copy-svg"> <Icon name="copy" /></button>
+      <button data-type="export-svg"><Icon name="download" /></button>
+    </div>
 
-  <button data-type="export-png">Exportar png</button>
-  <button data-type="export-svg">Exportar svg</button>
-  <button data-type="copy-svg">Copiar svg</button>
+    <div class="group">
+      <span>PNG</span>
+      <button data-type="export-png"><Icon name="download" /></button>
+    </div>
+  </div>
 </article>
 
 <script is:inline define:vars={{ name, svgData }}>

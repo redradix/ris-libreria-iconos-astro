@@ -3,7 +3,7 @@ button,
   --_color: var(--color, var(--color-wine));
   --_bgcolor: var(--bgcolor, var(--color-wine-alpha));
   border: 0.1em solid var(--_color);
-  background: var(--bg-color);
+  background: var(--_bgcolor);
   color: var(--_color);
   padding: var(--space-xs) var(--space-l-xl);
   border-radius: var(--border-radius);
@@ -15,6 +15,6 @@ button,
 
 button:where(:hover, :focus),
 .button:where(:hover, :focus) {
-  background: var(--_color);
-  color: var(--color-cream);
+  --color: var(--color-pink);
+  --bgcolor: var(--color-wine);
 }

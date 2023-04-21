@@ -8,10 +8,12 @@
   /* border: 1px solid var(--_bg-color); */
   border: 1px solid var(--color-wine-alpha);
   color: var(--_color);
-  padding: var(--space-m-l);
+  padding: var(--space-xs);
   border-radius: var(--border-radius);
   max-width: unset;
   aspect-ratio: 1;
+  display: grid;
+  place-items: center;
 }
 
 .card ::selection {
@@ -53,4 +55,59 @@
   position: absolute;
   right: 0;
   top: 0;
+}
+
+.icon {
+  display: grid;
+  place-items: center;
+}
+
+.icon svg {
+  flex: none;
+  height: 100%;
+  width: 6.5rem;
+}
+
+.card p {
+  font-size: var(--size-step-minus-1);
+}
+
+.card span,
+.card p {
+  font-weight: 500;
+}
+
+.group {
+  display: grid;
+  place-items: center;
+}
+
+.select {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.select .group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.3em;
+}
+
+.select button {
+  --color: var(--color-cream);
+  --bgcolor: var(--color-wine);
+  display: inline-grid;
+  place-items: center;
+  padding: 0;
+  border-radius: 50%;
+  inline-size: 4ch;
+  aspect-ratio: 1;
+}
+
+.select button:where(:hover, :focus) {
+  --color: var(--color-wine);
+  --bgcolor: var(--color-cream);
 }
