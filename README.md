@@ -32,7 +32,7 @@ The site aims to be accessible and usable for all people regardless of any disab
 WIP!
 
 - should the top scroll also readjust the focus?
-- What's the best way to navigate through a lot of icons and their export oprions using keyboard / AT?
+- What's the best way to navigate through a lot of icons and their export options using keyboard / AT?
 - Missing visual indicator that icon was copied to clipboard
 
 #### 🏃‍♀️ Fast
