@@ -28,7 +28,13 @@ There are no breakpoints on this website. The layout adapts to the available spa
 #### 👩‍🦽 Accessible
 
 The site aims to be accessible and usable for all people regardless of any disability.
+
 WIP!
+
+**Questions**
+
+- should the top scroll also readjust the focus?
+- What's the best way to navigate through a lot of icons and their export oprions using keyboard / AT?
 
 #### 🏃‍♀️ Fast
 
