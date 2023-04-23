@@ -24,11 +24,11 @@ import { Icon } from "astro-icon";
     <div class="group">
       <span>SVG</span>
       <button data-type="copy-svg">
-        <span class="visually-hidden">Copy SVG</span>
+        <span class="visually-hidden">{name}: Copy SVG</span>
         <Icon name="copy" /></button
       >
       <button data-type="export-svg">
-        <span class="visually-hidden">Download SVG</span><Icon
+        <span class="visually-hidden">{name}_ Download SVG</span><Icon
           name="download"
         /></button
       >
@@ -37,7 +37,7 @@ import { Icon } from "astro-icon";
     <div class="group">
       <span>PNG</span>
       <button data-type="export-png">
-        <span class="visually-hidden">Download PNG</span><Icon
+        <span class="visually-hidden">{name}: Download PNG</span><Icon
           name="download"
         /></button
       >

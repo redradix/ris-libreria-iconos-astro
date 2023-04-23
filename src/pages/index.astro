@@ -1,16 +1,16 @@
 ---
 // @ts-nocheck
-import { formatIcons, getAvailableSizes } from "../app/icons/business"
-import fetchIcons from "../app/icons/api"
-import Layout from "../layouts/Layout.astro"
-import Footer from "../layouts/Footer.astro"
-import Card from "../components/Card.astro"
-import { Icon } from "astro-icon"
-export let serverComponent = true
-let icons = await fetchIcons()
-icons = formatIcons(icons)
-const sizes = getAvailableSizes(icons)
-const defaultSize = sizes[0]
+import { formatIcons, getAvailableSizes } from "../app/icons/business";
+import fetchIcons from "../app/icons/api";
+import Layout from "../layouts/Layout.astro";
+import Footer from "../layouts/Footer.astro";
+import Card from "../components/Card.astro";
+import { Icon } from "astro-icon";
+export let serverComponent = true;
+let icons = await fetchIcons();
+icons = formatIcons(icons);
+const sizes = getAvailableSizes(icons);
+const defaultSize = sizes[0];
 ---
 
 <Layout title="RedRadix Icon Library">
@@ -19,17 +19,18 @@ const defaultSize = sizes[0]
       <header class="sidebar region innerspace">
         <h1>RedRadix</h1>
         <p>
-          En nuestra galería de iconografía e ilustraciones responsive,
-          encontrarás imágenes optimizadas para adaptarse a cualquier
-          dispositivo y tamaño de pantalla.
+          Responsive iconography and illustrations gallery: Find images
+          optimized to fit any device and screen size.
         </p>
       </header>
     </div>
 
+    <a href="#settings" class="skip-link">Skip to settings</a>
+
     <section class="iconcontainer matched-radius">
       {
         icons.error ? (
-          <p>Ocurrió un error. Inténtalo de nuevo</p>
+          <p>An error occurred. Please try again</p>
         ) : (
           <div class="wrapper grid">
             {Object.entries(icons).map(([iconName, iconData]) =>
@@ -51,7 +52,7 @@ const defaultSize = sizes[0]
             >
               <Icon name="logo-s" /> RedRadix 2023</a
             >
-            <div class="sizes">
+            <nav id="settings" class="sizes" aria-label="Select icon size">
               {
                 sizes.map((size, index) => (
                   <button
@@ -59,15 +60,16 @@ const defaultSize = sizes[0]
                     type="button"
                     data-size={size}
                     id={`size-button-${index}`}
+                    aria-selected={size === defaultSize ? "true" : "false"}
                   >
                     {size}
                   </button>
                 ))
               }
-            </div>
+            </nav>
             <button type="button" id="export-all-svg" class="plain"
-              >Exportar todo</button
-            >
+              >Export all
+            </button>
           </section>
         </div>
       </div>
@@ -134,59 +136,59 @@ const defaultSize = sizes[0]
 
 <script client:load define:vars={{ sizes, icons, defaultSize }}>
   function handleSizeButtonClick(size, event) {
-    const elements = document.querySelectorAll(`[data-name]`)
+    const elements = document.querySelectorAll(`[data-name]`);
 
     elements.forEach((element) => {
-      const name = element.getAttribute("data-name")
-      const svgData = icons[name][size].svgData
+      const name = element.getAttribute("data-name");
+      const svgData = icons[name][size].svgData;
 
-      const svgElement = element.querySelector(".icon")
-      svgElement.innerHTML = svgData
+      const svgElement = element.querySelector(".icon");
+      svgElement.innerHTML = svgData;
 
-      const sizeIndex = sizes.indexOf(size)
-      const sizeClass = `size-${sizeIndex}`
+      const sizeIndex = sizes.indexOf(size);
+      const sizeClass = `size-${sizeIndex}`;
       element.classList.remove(
         ...sizes.map((size) => `size-${sizes.indexOf(size)}`)
-      )
-      element.classList.add(sizeClass)
-    })
+      );
+      element.classList.add(sizeClass);
+    });
 
-    const buttons = document.querySelectorAll(`[data-size]`)
+    const buttons = document.querySelectorAll(`[data-size]`);
     buttons.forEach((button) => {
-      button.classList.remove("active")
-    })
+      button.classList.remove("active");
+    });
 
-    const selectedButton = document.querySelector(`[data-size="${size}"]`)
-    selectedButton.classList.add("active")
+    const selectedButton = document.querySelector(`[data-size="${size}"]`);
+    selectedButton.classList.add("active");
   }
 
   sizes.forEach((size, index) => {
-    const button = document.getElementById(`size-button-${index}`)
+    const button = document.getElementById(`size-button-${index}`);
     button.addEventListener("click", (event) =>
       handleSizeButtonClick(size, event)
-    )
-  })
+    );
+  });
 
   function exportAllSvg() {
-    const zip = new window.JSZip()
-    const folder = zip.folder("icons")
+    const zip = new window.JSZip();
+    const folder = zip.folder("icons");
 
     Object.entries(icons).forEach(([iconName, iconData]) => {
-      const svgData = iconData[defaultSize].svgData
-      folder.file(`${iconName}.svg`, svgData)
-    })
+      const svgData = iconData[defaultSize].svgData;
+      folder.file(`${iconName}.svg`, svgData);
+    });
 
     zip.generateAsync({ type: "blob" }).then((content) => {
-      const link = document.createElement("a")
-      link.href = URL.createObjectURL(content)
-      link.download = "icons.zip"
-      link.style.display = "none"
-      document.body.appendChild(link)
-      link.click()
-      document.body.removeChild(link)
-    })
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(content);
+      link.download = "icons.zip";
+      link.style.display = "none";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    });
   }
 
-  const exportAllSvgButton = document.getElementById("export-all-svg")
-  exportAllSvgButton.addEventListener("click", exportAllSvg)
+  const exportAllSvgButton = document.getElementById("export-all-svg");
+  exportAllSvgButton.addEventListener("click", exportAllSvg);
 </script>
