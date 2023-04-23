@@ -32,10 +32,11 @@ WIP!
 
 #### 🏃‍♀️ Fast
 
-- A lightweight site
-- Components such as scripts, fonts and optimized images.
+- Optimized meta structure
+- Lightweight
+- Optimized scripts, fonts and SVG
 - Caching
-- Vercel CDN
+- CDN
 
 ### 🔥 API
 
@@ -47,19 +48,21 @@ This website uses modern CSS, fluid type & space, flexible layouts and the idea 
 
 - CSS Metodology: [CUBE](https://cube.fyi/)
 - Layout components: [every-layout.dev](https://every-layout.dev/)
-- Tailwind: Not used in its original functionality, but as a generator for personalized urility classes, based on our design tokens.
+- Tailwind: Not used in its original functionality, but as a generator for personalized utility classes, based on our design tokens.
 
 ## 🚀 Project Structure
 
 This website uses [Astro](https://astro.build/).
-We are still learning about this system, so the benefits are not yet fully realized.
+We just started learning this system, so the benefits are not yet fully integrated.
 
-Inside of an Astro project, you'll see the following folders and files:
+### Folders and files:
 
 ```
 /
 ├── public/
-│   └── favicon.svg
+│   ├── favicon.svg
+│   ├── fonts/*
+│   │
 ├── src/
 │   ├── components/
 │   │   └── Card.astro
@@ -83,7 +86,7 @@ All commands are run from the root of the project, from a terminal:
 | Command                | Action                                           |
 | :--------------------- | :----------------------------------------------- |
 | `npm install`          | Installs dependencies                            |
-| `npm run dev`          | Starts local dev server at `localhost:3000`      |
+| `npm run start`        | Starts local dev server at `localhost:3000`      |
 | `npm run build`        | Build your production site to `./dist/`          |
 | `npm run preview`      | Preview your build locally, before deploying     |
 | `npm run astro ...`    | Run CLI commands like `astro add`, `astro check` |

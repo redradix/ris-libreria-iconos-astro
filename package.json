@@ -7,9 +7,11 @@
     "dev:postcss": "postcss src/assets/css/global.css -o public/css/global.css --watch --verbose",
     "build:astro": "astro build",
     "build:postcss": "NODE_ENV=production postcss src/assets/css/global.css -o public/css/global.css",
+    "preview:astro": "astro preview",
+    "preview:postcss": "NODE_ENV=production postcss src/assets/css/global.css -o public/css/global.css",
     "astro": "astro",
-    "preview": "astro preview",
     "start": "run-p dev:*",
+    "preview": "run-s preview:*",
     "build": "run-s build:*"
   },
   "dependencies": {
