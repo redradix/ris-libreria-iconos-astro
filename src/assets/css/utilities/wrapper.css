@@ -12,3 +12,8 @@
   padding-inline-end: var(--custom-gutter, var(--gutter));
   /* position: relative; */
 }
+
+.wrapper-sm {
+  max-width: 50rem;
+  margin-inline: auto;
+}

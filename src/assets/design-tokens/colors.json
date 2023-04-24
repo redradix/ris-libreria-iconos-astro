@@ -7,6 +7,10 @@
       "value": "#ffffff"
     },
     {
+      "name": "White Alpha",
+      "value": "#ffffff50"
+    },
+    {
       "name": "Purple",
       "value": "#3f3cbb"
     },

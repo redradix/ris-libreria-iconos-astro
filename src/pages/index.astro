@@ -41,37 +41,36 @@ const defaultSize = sizes[0];
           </div>
         )
       }
-      <div class="wrapper">
-        <div class="innerspace-extended">
-          <section class="control cluster">
-            <a
-              class="with-icon"
-              href="https://redradix.webflow.io/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Icon name="logo-s" /> RedRadix 2023</a
-            >
-            <nav id="settings" class="sizes" aria-label="Select icon size">
-              {
-                sizes.map((size, index) => (
-                  <button
-                    class={size === defaultSize ? "active" : ""}
-                    type="button"
-                    data-size={size}
-                    id={`size-button-${index}`}
-                    aria-selected={size === defaultSize ? "true" : "false"}
-                  >
-                    {size}
-                  </button>
-                ))
-              }
-            </nav>
-            <button type="button" id="export-all-svg" class="plain"
-              >Export all
-            </button>
-          </section>
-        </div>
+
+      <div class="wrapper-sm">
+        <section class="control cluster">
+          <a
+            class="with-icon"
+            href="https://redradix.webflow.io/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Icon name="logo-s" /> RedRadix 2023</a
+          >
+          <nav id="settings" class="sizes" aria-label="Select icon size">
+            {
+              sizes.map((size, index) => (
+                <button
+                  class={size === defaultSize ? "active" : ""}
+                  type="button"
+                  data-size={size}
+                  id={`size-button-${index}`}
+                  aria-selected={size === defaultSize ? "true" : "false"}
+                >
+                  {size}
+                </button>
+              ))
+            }
+          </nav>
+          <button type="button" id="export-all-svg" class="plain"
+            >Export all
+          </button>
+        </section>
       </div>
     </section>
   </main>

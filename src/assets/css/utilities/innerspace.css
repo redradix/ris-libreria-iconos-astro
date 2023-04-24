@@ -1,7 +1,3 @@
 .innerspace {
   padding-inline: clamp(0rem, calc(-18.21rem + 28.57vw), 7.5rem);
 }
-
-.innerspace-extended {
-  padding-inline: clamp(0rem, calc(-15rem + 28.57vw), 16rem);
-}
