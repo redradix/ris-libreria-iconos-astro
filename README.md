@@ -45,13 +45,13 @@ WIP!
 
 ### 🔥 API
 
-[...]
+We define a set of functions to fetch and process icons from a Figma design file.
 
 ### 🌷 CSS
 
 This website uses modern CSS, fluid type & space, flexible layouts and the idea of Progressive Enhancement.
 
-- CSS Metodology: [CUBE](https://cube.fyi/)
+- CSS Methodology: [CUBE](https://cube.fyi/)
 - Layout components: [every-layout.dev](https://every-layout.dev/)
 - Tailwind: Not used in its original functionality, but as a generator for personalized utility classes, based on our design tokens.
 
@@ -69,12 +69,22 @@ We just started learning this system, so the benefits are not yet fully integrat
 │   ├── fonts/*
 │   │
 ├── src/
+│   ├── app/
+│   │   ├── icons/*
+│   │   └── enhancedFetch.js
+│   │
+│   ├── assets/
+│   │   ├── css/*
+│   │   ├── css-utils/*
+│   │   └── design-tokens/*
+│   │
 │   ├── components/
 │   │   └── Card.astro
 │   ├── layouts/
 │   │   └── Layout.astro
 │   └── pages/
 │       └── index.astro
+│
 └── package.json
 ```
 

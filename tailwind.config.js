@@ -1,3 +1,5 @@
+/* © Andy Bell - https://buildexcellentwebsit.es/ */
+
 const plugin = require("tailwindcss/plugin");
 const postcss = require("postcss");
 const postcssJs = require("postcss-js");
@@ -18,7 +20,7 @@ const fontSize = tokensToTailwind(clampGenerator(textSizeTokens.items));
 const spacing = tokensToTailwind(clampGenerator(spacingTokens.items));
 
 module.exports = {
-  content: ["./src/**/*.{html,js,jsx,mdx,njk,twig,vue}"],
+  content: ["./src/**/*.{html,js,jsx,mdx,njk,twig,vue,astro}"],
   presets: [],
   theme: {
     screens: {
@@ -31,8 +33,8 @@ module.exports = {
     fontFamily,
     fontWeight: {
       normal: 400,
+      medium: 500,
       bold: 700,
-      black: 800,
     },
     backgroundColor: ({ theme }) => theme("colors"),
     textColor: ({ theme }) => theme("colors"),
